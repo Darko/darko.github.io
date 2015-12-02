@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Darko Efremov | University Class Schedule Application</title>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../../dist/css/main.css">
+</head>
+<body>
+
+  <header class="projects-header">
+    <div class="fixed-nav">
+      <div class="container">
+        <nav>
+          <a href="/" class="logo"></a>
+          <span class="menu-wrap">Menu <button class="menu" id="menu"><span></span></button></span>
+          <ul class="menu-items">
+            <li><a href="/#about">About me</a></li>
+            <li><a href="/#work">Projects</a></li>
+            <li><a href="/#clients">Clients</a></li>
+            <li><a href="/#contact">Contact me</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section id="project">
+    <div class="container">
+      <div class="project-header flex flex--space-between flex--center-v">
+        <h6 class="project-title">UgdApp - A class schedule mobile application for students</h6>
+        <p class="project-categories">Website Design, Development</p>
+      </div>
+      <div class="project-case flex">
+        <div class="col-6 slider-container md-col-12">
+          <ul class="slider flex">
+            <li class="slide md-col-3">
+              <span class="slide-description">A list of the faculties</span>
+              <img src="previews/preview-1.jpg" alt="" />
+            </li>
+            <li class="slide md-col-3">
+              <span class="slide-description">A list of semesters you can pick from when you select a faculty</span>
+              <img src="previews/preview-2.jpg" alt="" />
+            </li>
+            <li class="slide md-col-3">
+              <span class="slide-description">
+                Each faculty has couple of groups that students are divided into.<br/>
+                This is the list of groups for Informatics for the first semester.
+              </span>
+              <img src="previews/preview-3.jpg" alt="" />
+            </li>
+            <li class="slide md-col-3">
+              <span class="slide-description">
+                When you've picked your faculty, semester and group, you can see the week days.
+                Monday to Friday. By clicking on them you can see a list of classes that are held on that day.
+              </span>
+              <img src="previews/preview-4.jpg" alt="" />
+            </li>
+            <li class="slide md-col-3">
+              <span class="slide-description">
+                Clicking on the day will open a list of subjects for that day. If the class being held at the moment,
+                the student is notified about it with the green dot in the top right corner of the subject card.
+                There's a clear representation of the information the user needs to know. When does the class start, when
+                does it end, and they can sign to that class by clicking on the check box ( which in this case is a circle ).
+              </span>
+              <img src="previews/preview-5.jpg" alt="" />
+            </li>
+            <li class="slide md-col-3">
+              <span class="slide-description">
+                If the student clicked the "Subscribe me to this class", it will be saved into "My classes" ( the ui for this
+                is still under construction), and the user will be able to quickly see the time when their classes start and end,
+                get notification for each class, depending on that when they start, etc. In the menu, there's also links to the
+                University website, Settings and Admin page ( which are still under construction ).
+              </span>
+              <img src="previews/preview-6.jpg" alt="" />
+            </li>
+            <!-- <li class="video-container flex column flex--center-h slide md-col-3">
+              <video src="previews/preview-2.mp4" loop preload autoplay></video>
+            </li> -->
+          </ul>
+        </div>
+        <div class="col-6">
+          <p>
+            UgdApp is a mobile application that helps students by notifying them about their subjects.
+            This is actually an application me and my brother are developing. We took part in a Hackathon organized by the University I study at, where we won the first place with this idea.
+          </p>
+          <p>
+            The idea is to present the information visually better to the students and also allow them to know wether they have class soon or not. If they're connected to the internet ofcourse, and will decide itself if it should notify them by sending them a notificaton on their smartphone, or not.
+            This depends on a few things. Is the student subscribed to the subject? Is the student in radius greater than 3km (1.8 miles) from the campus? Does the class start in less than 30 minutes? If both conditions are met,
+            the student will get a notification.
+          </p>
+          <p>
+            That is for students. But what about professors? <br/>
+            This will allow the professors to notify their students in case they won't make it to class, or if the class is rescheduled. <br/>
+            Only students subscribed to the subject the professor is sending a notification for will get the message.
+          </p>
+          <p>
+            My responsibility in this project is to provide stunning UI design, and develop the front-end of the application. Meaning, turn the design into an interractive application which the users interract with.
+          </p>
+          <p class="tags">
+            Technologies used:<br/>
+            <span>HTML</span><span>CSS</span><span>SASS</span><span>JavaScript</span><span>jQuery</span><span>AngularJs</span>
+            <span>Ionic</span><span>GulpJs</span><span>Firebase / MongoDB</span><span>NodeJs</span><span>ExpressJs</span>
+            <span>Git</span>
+          </p>
+          <p>Demo still not available. The application is in development. However, you can see previews on the left side.</p>
+          <a href="/#contact" class="btn cta">Get in touch</a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+  <script src="../../dist/js/main.js"></script>
+</body>
+</html>
