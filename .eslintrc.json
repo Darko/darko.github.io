@@ -1,5 +1,8 @@
 {
-    "extends": "airbnb",
+    "extends": [
+        "react-app",
+        "airbnb"
+    ],
     "env": {
         "browser": true,
         "node": true,
@@ -9,5 +12,8 @@
         "no-mixed-spaces-and-tabs": "warn",
         "no-trailing-spaces": "warn",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "max-len": "off",
+        "comma-dangle": "off",
+        "jsx-a11y/href-no-hash": "off"
     }
 }

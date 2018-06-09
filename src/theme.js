@@ -5,10 +5,11 @@ const colors = {
 
 const theme = {
   colors: {
-    primary: colors.primary(),
+    primary: alpha => colors.primary(alpha === undefined ? 1 : alpha),
     primaryHue: colors.primary(0.2),
     title: colors.black(0.87),
     copy: colors.black(0.77),
+    navLink: colors.black(0.57),
     icon: colors.black(0.3),
     iconActive: colors.primary
   },
