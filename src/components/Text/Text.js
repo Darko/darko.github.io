@@ -13,6 +13,11 @@ export const Copy = styled.p`
   font-size: 1.1rem
 `;
 
+export const Link = styled.a`
+  color: ${props => props.theme.colors.primary(0.77)};
+  text-decoration: none;
+`;
+
 export const Bold = styled.strong`
   font-weight: 700;
 `;
