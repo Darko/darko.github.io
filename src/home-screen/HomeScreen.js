@@ -1,47 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import Name from './components/Name/Name';
+import Position from './components/Position/Position';
+
 import Lines from '../components/Lines/Lines';
-import { Bold } from '../components/Text/Text';
-import Image from '../home-screen/components/Image/Image';
-import Name from '../home-screen/components/Name/Name';
-import Position from '../home-screen/components/Position/Position';
 import Github from '../components/Icons/Github';
 import Instagram from '../components/Icons/Instagram';
 import Twitter from '../components/Icons/Twitter';
-import Navigation from '../components/Navigation/Navigation';
-import PageWrapper from '../components/Page/Wrapper';
-
-const Wrapper = PageWrapper.extend`
-  grid-template-areas:
-    "title-lines title-lines"
-    "title title"
-    "position position"
-    "image social"
-    "navigation navigation";
-
-  @media screen and (min-width: 42em) {
-    grid-template-areas:
-    "image social"
-    "title-lines title-lines"
-    "title title"
-    "position position"
-    "navigation navigation";
-  }
-`;
-
-const SocialIcons = styled.div`
-  width: 24px;
-  padding-top: 20px;
-
-  svg {
-    margin-bottom: 20px;
-  }
-`;
+import { Wrapper, Image, SocialIcons, AnchorLink, Navigation } from './styles';
+import { Bold } from '../components/Text/Text';
 
 const routes = [
   {
     route: '/bio',
-    name: 'Bio'
+    name: 'More stuff'
   }
 ];
 
@@ -52,9 +23,15 @@ const HomeScreen = () => (
     <Position>Front-End engineer <Bold>@StreamElements</Bold></Position>
     <Image />
     <SocialIcons>
-      <Instagram className="instagram" />
-      <Twitter className="twitter" />
-      <Github className="github" />
+      <AnchorLink href="https://instagram.com/darko_efremov" target="blank">
+        <Instagram className="instagram" />
+      </AnchorLink>
+      <AnchorLink href="https://twitter.com/darkoefremov" target="blank">
+        <Twitter className="twitter" />
+      </AnchorLink>
+      <AnchorLink href="https://github.com/darko" target="blank">
+        <Github className="github" />
+      </AnchorLink>
     </SocialIcons>
     <Navigation links={routes} />
   </Wrapper>

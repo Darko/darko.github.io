@@ -5,7 +5,7 @@ const colors = {
 
 const theme = {
   colors: {
-    primary: alpha => colors.primary(alpha === undefined ? 1 : alpha),
+    primary: colors.primary,
     primaryHue: colors.primary(0.2),
     title: colors.black(0.87),
     copy: colors.black(0.77),
@@ -20,6 +20,9 @@ const theme = {
     copy: {
       fontFamily: `'Catamaran', sans-serif`
     }
+  },
+  breakpoints: {
+    medium: '42em'
   }
 }
 

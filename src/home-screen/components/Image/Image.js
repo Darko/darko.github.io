@@ -14,7 +14,7 @@ const Image = styled.div`
     top: 20px;
     left: -20px;
     z-index: 1;
-    box-shadow: inset 0px 0px 0px 10px ${props => props.theme.colors.primary(0.6)};
+    box-shadow: inset 0px 0px 0px 8px ${props => props.theme.colors.primary(0.6)};
   }
 
   &:after {
