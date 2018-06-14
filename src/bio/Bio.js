@@ -47,7 +47,7 @@ const HomeScreen = () => (
         I’m a 22-year-old Front-end developer, wanna-be digital nomad, and an amateur fitness enthusiast.
       </Text>
       <Text>
-        Studied Computer Science. At some point, an opportunity presented itself to me. Started working as a Software Engineer at StreamElements and after some time I dropped-out to further advance my career.
+        Studied Computer Science. At some point, an opportunity presented itself to me. Started working as a Software Engineer at StreamElements and after some time I dropped out of university to further advance my career.
       </Text>
       <Text>
         Before that, I graduated high school and got a diploma in “Electricity, Electronics and Telecommunications”.
