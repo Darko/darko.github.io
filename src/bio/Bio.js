@@ -5,6 +5,7 @@ import Name from '../home-screen/components/Name/Name';
 import PageWrapper from '../components/Page/Wrapper';
 import { Copy, Link } from '../components/Text/Text';
 import Nav from '../components/Navigation/Navigation';
+import * as sns from '../constants/sns';
 
 const Wrapper = PageWrapper.extend`
   grid-template-areas:
@@ -53,7 +54,7 @@ const HomeScreen = () => (
         Before that, I graduated high school and got a diploma in “Electricity, Electronics and Telecommunications”.
       </Text>
       <Text>
-        I don’t have many public things to present on this website, but you can take a look at some of my small coding projects on <Link href="https://github.com/darko" target="blank">Github</Link>, my adventures on <Link href="https://github.com/darko" target="blank">Instagram</Link>, and thoughts on <Link href="https://github.com/darko" target="blank">Twitter</Link>.
+        I don’t have many public things to present on this website, but you can take a look at some of my small coding projects on <Link href={sns.github} target="blank">Github</Link>, my adventures on <Link href={sns.instagram} target="blank">Instagram</Link>, and thoughts on <Link href={sns.twitter} target="blank">Twitter</Link>.
       </Text>
     </Content>
     <Navigation links={routes} />

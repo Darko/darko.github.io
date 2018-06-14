@@ -8,6 +8,7 @@ import Instagram from '../components/Icons/Instagram';
 import Twitter from '../components/Icons/Twitter';
 import { Wrapper, Image, SocialIcons, AnchorLink, Navigation } from './styles';
 import { Bold } from '../components/Text/Text';
+import * as sns from '../constants/sns';
 
 const routes = [
   {
@@ -23,13 +24,13 @@ const HomeScreen = () => (
     <Position>Front-End engineer <Bold>@StreamElements</Bold></Position>
     <Image />
     <SocialIcons>
-      <AnchorLink href="https://instagram.com/darko_efremov" target="blank">
+      <AnchorLink href={sns.instagram} target="blank">
         <Instagram className="instagram" />
       </AnchorLink>
-      <AnchorLink href="https://twitter.com/darkoefremov" target="blank">
+      <AnchorLink href={sns.twitter} target="blank">
         <Twitter className="twitter" />
       </AnchorLink>
-      <AnchorLink href="https://github.com/darko" target="blank">
+      <AnchorLink href={sns.github} target="blank">
         <Github className="github" />
       </AnchorLink>
     </SocialIcons>
