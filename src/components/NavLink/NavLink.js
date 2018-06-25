@@ -40,6 +40,7 @@ export default styled(NavLink)`
   svg {
     margin-right: ${props => (props.direction === 'backwards' ? '.3rem' : '1rem')};
     vertical-align: middle;
+    fill: currentColor;
   }
 
   span {
