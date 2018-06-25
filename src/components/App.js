@@ -36,7 +36,14 @@ class App extends React.Component {
       }
     });
 
-    window.addEventListener('click', e => {
+    window.addEventListener('click touchstart', e => {
+      const { target } = e;
+      const isLink = target.nodeName === 'A' || target.parentNode.nodeName === 'A';
+
+      if (isLink) { // no links
+        return;
+      }
+
       const { lastClick } = this.state;
       const time = lastClick !== undefined ? Date.now() - lastClick : 0;
 
