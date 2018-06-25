@@ -10,8 +10,10 @@ class App extends React.Component {
   constructor() {
     super();
 
+    const time = new Date().getHours();
+
     this.state = {
-      theme: new Date().getHours() > 20 ? 'dark' : 'light',
+      theme: time > 20 || time < 6 ? 'dark' : 'light',
       lastClick: undefined,
     }
   }
