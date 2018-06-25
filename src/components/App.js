@@ -26,6 +26,29 @@ class App extends React.Component {
     });
   }
 
+  listenDoubleTap = e => {
+    const { target } = e;
+    const isLink = target.nodeName === 'A' || target.parentNode.nodeName === 'A';
+
+    if (isLink) { // no links
+      return;
+    }
+
+    const { lastClick } = this.state;
+    const time = lastClick !== undefined ? Date.now() - lastClick : 0;
+
+    if (time > 0 && time < 400) {
+      e.preventDefault();
+      this.toggleTheme();
+      this.setBodyBg();
+      return;
+    }
+
+    this.setState({
+      lastClick: Date.now()
+    });
+  }
+
   componentDidMount() {
     this.setBodyBg();
 
@@ -36,28 +59,8 @@ class App extends React.Component {
       }
     });
 
-    window.addEventListener('click touchstart', e => {
-      const { target } = e;
-      const isLink = target.nodeName === 'A' || target.parentNode.nodeName === 'A';
-
-      if (isLink) { // no links
-        return;
-      }
-
-      const { lastClick } = this.state;
-      const time = lastClick !== undefined ? Date.now() - lastClick : 0;
-
-      if (time > 0 && time < 400) {
-        e.preventDefault();
-        this.toggleTheme();
-        this.setBodyBg();
-        return;
-      }
-
-      this.setState({
-        lastClick: Date.now()
-      });
-    })
+    window.addEventListener('click', this.listenDoubleTap);
+    window.addEventListener('touchstart', this.listenDoubleTap);
   }
 
   render() {
