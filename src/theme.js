@@ -6,7 +6,7 @@ const primaryColor = {
 const colorg = { // stands for color generator
   primary: (alpha, theme = 'light') => {
     const [r, g, b] = primaryColor[theme];
-    return `rgba(${r},${g}, ${b}, ${alpha === undefined ? 1 : alpha})`
+    return `rgba(${r},${g}, ${b}, ${alpha === undefined ? 1 : alpha})`;
   },
   black: alpha => `rgba(0, 0, 0, ${alpha === undefined ? 1 : alpha})`,
   white: alpha => `rgba(255, 255, 255, ${alpha === undefined ? 1 : alpha})`,
@@ -27,10 +27,10 @@ const light = {
   colors,
   typography: {
     title: {
-      fontFamily: `'Playfair Display', serif`
+      fontFamily: '"Playfair Display", serif'
     },
     copy: {
-      fontFamily: `'Catamaran', sans-serif`
+      fontFamily: '"Catamaran", sans-serif'
     }
   },
   breakpoints: {

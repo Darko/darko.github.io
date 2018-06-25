@@ -11,7 +11,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      theme: new Date().getHours() > 20 ? 'dark' : 'light'
+      theme: new Date().getHours() > 20 ? 'dark' : 'light',
+      lastClick: undefined,
     }
   }
 
@@ -19,18 +20,37 @@ class App extends React.Component {
     document.body.style.backgroundColor = themes[this.state.theme].colors.background;
   }
 
+  toggleTheme = () => {
+    this.setState({
+      theme: this.state.theme === 'light' ? 'dark' : 'light'
+    });
+  }
+
   componentDidMount() {
     this.setBodyBg();
 
     window.addEventListener('keypress', event => {
       if (event.key.toLowerCase() === 'n') {
-        this.setState({
-          theme: this.state.theme === 'light' ? 'dark' : 'light'
-        });
-
+        this.toggleTheme();
         this.setBodyBg();
       }
     });
+
+    window.addEventListener('click', e => {
+      const { lastClick } = this.state;
+      const time = lastClick !== undefined ? Date.now() - lastClick : 0;
+
+      if (time > 0 && time < 400) {
+        e.preventDefault();
+        this.toggleTheme();
+        this.setBodyBg();
+        return;
+      }
+
+      this.setState({
+        lastClick: Date.now()
+      });
+    })
   }
 
   render() {
