@@ -5,8 +5,6 @@ class Image extends React.Component {
   constructor() {
     super();
 
-    window.xd = this;
-
     this.state = {
       calculatedStyle: {
         transition: 'transform 0.2s linear',
@@ -54,10 +52,14 @@ class Image extends React.Component {
       calculatedStyle: {
         ...state.calculatedStyle,
         transform: `rotateX(${x}deg) rotateY(${y}deg)`,
+        WebkitTransform: `rotateX(${x}deg) rotateY(${y}deg)`,
+        msTransform: `rotateX(${x}deg) rotateY(${y}deg)`,
       },
       shadowStyles: {
         ...state.shadowStyles,
-        transform: `translate(${_x}px, ${_y}px) rotateX(${x}deg) rotateY(${y}deg)`
+        transform: `translate(${_x}px, ${_y}px) rotateX(${x}deg) rotateY(${y}deg)`,
+        WebkitTransform: `translate(${_x}px, ${_y}px) rotateX(${x}deg) rotateY(${y}deg)`,
+        msTransform: `translate(${_x}px, ${_y}px) rotateX(${x}deg) rotateY(${y}deg)`,
       }
     }));
   }
@@ -81,10 +83,14 @@ class Image extends React.Component {
       calculatedStyle: {
         ...state.calculatedStyle,
         rotating: false,
-        transform: 'rotateX(0) rotateY(0)'
+        transform: 'rotateX(0) rotateY(0)',
+        WebkitTransform: 'rotateX(0) rotateY(0)',
+        msTransform: 'rotateX(0) rotateY(0)',
       },
       shadowStyles: {
-        transform: 'translate(0)'
+        transform: 'translate(0)',
+        WebkitTransform: 'translate(0)',
+        msTransform: 'translate(0)',
       }
     }));
   }

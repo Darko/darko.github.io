@@ -17,7 +17,7 @@ export const Shadow = styled.div`
   background-color: black;
   transform: translate(0);
   transition: transform .2s linear;
-  opacity: ${({ theme }) => theme.type === 'dark' ? 0.8 : 0.03};
+  opacity: ${({ theme }) => theme.type === 'dark' ? 0.3 : 0.03};
 
   &:before {
     content: '';
