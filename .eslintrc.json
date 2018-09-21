@@ -13,6 +13,7 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "max-len": "off",
         "comma-dangle": "off",
-        "react/forbid-prop-types": "off"
+        "react/forbid-prop-types": "off",
+        "jsx-a11y/mouse-event-have-key-events": "off",
     }
 }

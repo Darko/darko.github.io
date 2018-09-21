@@ -5,6 +5,7 @@ import Anchor from '../components/NavLink/AnchorLink';
 import Nav from '../components/Navigation/Navigation';
 
 export const Wrapper = PageWrapper.extend`
+  perspective: 100px;
   grid-template-areas:
     "title-lines title-lines"
     "title title"
@@ -38,7 +39,7 @@ export const SocialIcons = styled.div`
 
 export const Image = styled(ProfileImage)`
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    margin-bottom: 4.8em;
+    margin-bottom: 2.8em;
   }
 `;
 
