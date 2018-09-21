@@ -24,6 +24,7 @@ const colors = {
 };
 
 const light = {
+  type: 'light',
   colors,
   typography: {
     title: {
@@ -40,6 +41,7 @@ const light = {
 
 const dark = {
   ...light,
+  type: 'dark',
   colors: {
     ...colors,
     background: '#1D1E30',
