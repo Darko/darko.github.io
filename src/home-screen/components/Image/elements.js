@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 236px;
   height: 236px;
-  margin-top: 20px;
+  margin: 20px 20px 0 0;
   position: relative;
 `;
 
