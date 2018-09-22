@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import themes from '../theme';
+import createTheme from '../theme';
 import HomeScreen from '../home-screen/HomeScreen';
 import Bio from '../bio/Bio';
 
@@ -11,24 +11,28 @@ class App extends React.Component {
     super();
 
     const time = new Date().getHours();
+    const themeType = time > 20 || time < 6 ? 'dark' : 'light';
 
     this.state = {
-      theme: time > 20 || time < 6 ? 'dark' : 'light',
+      themeType,
+      theme: createTheme(themeType),
       lastClick: undefined,
     }
   }
 
   setBodyBg = () => {
-    document.body.style.backgroundColor = themes[this.state.theme].colors.background;
+    document.body.style.backgroundColor = this.state.theme.colors.background;
   }
 
   toggleTheme = () => {
+    const themeType = this.state.themeType === 'light' ? 'dark' : 'light';
     this.setState({
-      theme: this.state.theme === 'light' ? 'dark' : 'light'
+      themeType,
+      theme: createTheme(themeType)
     });
   }
 
-  listenDoubleTap = e => {
+  changeTheme = e => {
     const { target } = e;
     const isLink = target.nodeName === 'A' || target.parentNode.nodeName === 'A';
 
@@ -61,14 +65,13 @@ class App extends React.Component {
       }
     });
 
-    window.addEventListener('click', this.listenDoubleTap);
-    window.addEventListener('touchstart', this.listenDoubleTap);
+    window.addEventListener('touchstart', this.changeTheme);
   }
 
   render() {
     const { theme } = this.state;
     return (
-      <ThemeProvider theme={themes[theme]}>
+      <ThemeProvider theme={theme}>
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/bio" component={Bio} />
