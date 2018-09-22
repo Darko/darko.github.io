@@ -54,7 +54,12 @@ const dark = {
   }
 };
 
-export default {
-  light,
-  dark
-};
+
+
+export default (type = 'light') => {
+  if (type === 'dark') {
+    return dark;
+  }
+
+  return light;
+}
