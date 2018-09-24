@@ -9,6 +9,7 @@ import Twitter from '../components/Icons/Twitter';
 import { Wrapper, Image, SocialIcons, AnchorLink, Navigation } from './styles';
 import { Bold } from '../components/Text/Text';
 import * as sns from '../constants/sns';
+import { Notification, HOC as WithNotification } from '../components/Notification/index';
 
 const routes = [
   {
@@ -18,24 +19,27 @@ const routes = [
 ];
 
 const HomeScreen = () => (
-  <Wrapper>
-    <Lines />
-    <Name>Darko <span>Efremov</span></Name>
-    <Position>Front-End engineer <Bold>@StreamElements</Bold></Position>
-    <Image />
-    <SocialIcons>
-      <AnchorLink href={sns.instagram} target="blank">
-        <Instagram className="instagram" />
-      </AnchorLink>
-      <AnchorLink href={sns.twitter} target="blank">
-        <Twitter className="twitter" />
-      </AnchorLink>
-      <AnchorLink href={sns.github} target="blank">
-        <Github className="github" />
-      </AnchorLink>
-    </SocialIcons>
-    <Navigation links={routes} />
-  </Wrapper>
+  <React.Fragment>
+    <Notification />
+    <Wrapper>
+      <Lines />
+      <Name>Darko <span>Efremov</span></Name>
+      <Position>Front-End engineer <Bold>@StreamElements</Bold></Position>
+      <Image />
+      <SocialIcons>
+        <AnchorLink href={sns.instagram} target="blank">
+          <Instagram className="instagram" />
+        </AnchorLink>
+        <AnchorLink href={sns.twitter} target="blank">
+          <Twitter className="twitter" />
+        </AnchorLink>
+        <AnchorLink href={sns.github} target="blank">
+          <Github className="github" />
+        </AnchorLink>
+      </SocialIcons>
+      <Navigation links={routes} />
+    </Wrapper>
+  </React.Fragment>
 );
 
-export default HomeScreen;
+export default WithNotification(HomeScreen);
