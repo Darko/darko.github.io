@@ -2,6 +2,7 @@ import React from 'react';
 import Context from './Context';
 
 export const HIDE_ANIMATION_DELAY = 400;
+export const TOTAL_ANIMATION_MARGINS = 400;
 
 const withNotificationService = Wrapped => {
   class NotificationService extends React.Component {
@@ -17,7 +18,7 @@ const withNotificationService = Wrapped => {
 
     push = notification => {
       const withDefaults = {
-        showTime: 3000,
+        showTime: (notification.showTime || 3000) + TOTAL_ANIMATION_MARGINS, // not 400 for 2x200ms before and after animation margins
         ...notification
       };
 

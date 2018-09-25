@@ -18,37 +18,75 @@ const NotificationWrapper = styled.div`
   color: #fff;
   min-width: 280px;
   max-width: 280px;
-  opacity: ${props => props.slideIn && !props.hide ? 1 : 0};
-  transform: translateY(${props => props.slideIn && !props.hide ? 0 : -30}px);
+  opacity: ${props => props.slideIn ? 1 : 0};
+  transform: translateY(${props => props.slideIn ? 0 : -30}px);
   transition: opacity .2s linear, transform .2s linear;
 `;
 
 const NotificationText = styled(Copy)`
   font-weight: normal;
+  color: rgba(255, 255, 255, 0.87);
 `;
+
+class Notification extends React.Component {
+  state = {
+    slideIn: false
+  }
+
+  onClose = () => {
+    this.setState({
+      slideIn: false
+    });
+    
+    setTimeout(() => this.props.onClose(), 200);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        slideIn: true
+      });
+  
+      setTimeout(this.onClose, this.props.data.showTime);
+    }, 200);
+  }
+
+  render() {
+    const { text } = this.props.data;
+
+    return (
+      <NotificationWrapper slideIn={this.state.slideIn}>
+        <NotificationText>{text}</NotificationText>
+      </NotificationWrapper>
+    );
+  }
+}
 
 class Component extends React.Component { 
   state = {
-    slideIn: false
+    show: false
+  }
+
+  onClose = () => {
+    this.setState({
+      show: false
+    });
   }
 
   setContext = ctx => {
     this.ctx = ctx;
     const { current, digesting } = ctx;
 
-    if (this.state.slideIn !== digesting) {
+    if (digesting && !this.state.show) {
       setTimeout(() => {
-        this.setState({ slideIn: digesting });
-      }, 400);
+        this.setState({
+          show: true
+        });
+      }, 0);
     }
 
     return <Wrapper>
-      {
-        digesting &&
-        <NotificationWrapper hide={this.state.slideIn !== digesting} slideIn={this.state.slideIn}>
-          <NotificationText>{current.text}</NotificationText>
-        </NotificationWrapper>
-      }
+      { this.state.show && <Notification data={current} onClose={this.onClose}/> }
     </Wrapper>
   }
 
