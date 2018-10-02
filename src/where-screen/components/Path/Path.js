@@ -4,17 +4,21 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
-const Avatar = styled.svg`
+const Anchor = styled.span`
   width: 60px;
   height: 60px;
   position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 const SvgWrapper = styled.div`
+
   svg {
     min-width: 665px;
     min-height: 505px;
@@ -35,9 +39,10 @@ const SvgWrapper = styled.div`
 export default class Path extends React.Component {
   counter = 0;
   state = {
+    x: 624,
+    y: 462,
+    position: { x: -291, y: -248 },
     direction: true,
-    transform: '',
-    curveLength: 0,
   }
 
   moveStar = () => {
@@ -50,51 +55,68 @@ export default class Path extends React.Component {
       return;
     }
 
-    this.setState(state => {
-      const curveLength = this.state.curveLength || this.svg.children[0].getTotalLength();
-      let direction = this.state.direction;
-      
-      if (parseInt(this.counter, 10) === 1) {
-        direction = false;
-      } else if (parseInt(this.counter, 10) < 0) {
-        direction = true;
-      }
-
-      return {
-        ...state,
-        curveLength,
-        direction
-      }
-    });
+    this.curveLength = this.curveLength || this.svg.children[0].getTotalLength();
 
     /*	Based on the direction variable either increase or decrease the counter */
     if (this.state.direction) {
-      this.counter += 3;
+      this.counter += 0.3;
     } else {
-      this.counter -= 3;
+      this.counter -= 0.3;
     }
 
-    const { x, y } = this.svg.children[0].getPointAtLength(this.counter, this.state.curveLength);
+    const point = this.svg.children[0].getPointAtLength(this.counter, this.curveLength);
+    const X = (point.x - 30).toFixed(2);
+    const Y = (point.y - 30).toFixed(2);
     
     this.setState({
-      transform: `translate(${(x - 30).toFixed(2)}, ${(y - 30).toFixed(2)})`
-    });
+      x: X,
+      y: Y,
+    }, () => !this.state.userDragged && this.calcInitialPosition());
+
+    if (X < -15 && Y < -15 ) {
+      return;
+    }
 
     requestAnimationFrame(this.moveStar);
+  }
+
+  onDrag = (e, dragData) => {
+    this.setState({
+      userDragged: true,
+      position: {
+        x: dragData.x,
+        y: dragData.y,
+      }
+    })
   }
 
   componentDidMount() {
     window.xd = this;
     // requestAnimationFrame(this.moveStar);
+    setTimeout(this.calcInitialPosition.bind(this), 500);
+  }
+
+  calcInitialPosition() {
+    const { x, y } = this.anchor.getBoundingClientRect();
+    const { position } = this.state;
+    const posx = position.x + (window.innerWidth / 2) - x;
+    const posy = position.y + (window.innerHeight / 2) - y;
+
+    this.setState({
+      position: { x: posx, y: posy }
+    });
   }
 
   render() {
-    const { transform } = this.state;
+    const { x, y, position } = this.state;
+    const translate = `translate(${x}, ${y})`;
 
     return (
       <Wrapper>
         <Draggable
-          bounds="body">
+          position={position}
+          onDrag={this.onDrag}
+        >
           <SvgWrapper>
             <svg ref={svg => this.svg = svg} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 665 505" style={{ enableBackground: 'new 0 0 665 505' }} xmlSpace="preserve">
             <polyline className="st0" points="654.1,492.8 640.3,486.9 630.8,478.8 628.4,463.4 617.9,458.6 611,448.2 609.1,420.4 635.8,393.3 
@@ -103,8 +125,11 @@ export default class Path extends React.Component {
                 509.3,177.8 506.7,168.5 500.1,160.9 497.5,155.2 486.1,149.5 476.3,149.5 429,131.9 407.7,127.4 361.1,127.4 348.7,121 334,121 
                 294.8,113.1 272.9,117.2 249.2,108.6 229.4,108.6 220.2,102.2 206.4,96.5 197.1,84.4 180.5,73 170,57.1 161,55.2 156.5,48.3 143,43 
                 136.5,48.7 124.7,48 97.8,30.2 87.8,29 78.6,30.9 66.9,38.5 56.2,29 46.7,26.2 36,25.2 28.7,20 23.2,20.9 13,11.4 "/>
-                <image xlinkHref="./assets/darkool.png" transform={transform} ref={img => this.avatar = img} width="60"></image>
+                <image xlinkHref="./assets/darkool.png" transform={translate} ref={img => this.avatar = img} width="60"></image>
             </svg>
+            <Anchor innerRef={anchor => this.anchor = anchor} style={{
+              transform: `translate(${x}px, ${y}px)`
+            }}/>
           </SvgWrapper>
         </Draggable>
       </Wrapper>
