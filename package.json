@@ -8,7 +8,7 @@
     "react-dom": "^16.4.0",
     "react-draggable": "^3.0.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "2.0.3",
     "styled-components": "^3.3.2"
   },
   "scripts": {
@@ -33,5 +33,11 @@
       "!src/index.js",
       "!src/tempPolyfills.js"
     ]
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
