@@ -20,6 +20,7 @@ const SvgWrapper = styled.div`
     min-height: 505px;
     max-width: 665px;
     max-height: 505px;
+    overflow: visible;
   }
   .st0 {
     fill: none;
@@ -76,7 +77,7 @@ export default class Path extends React.Component {
     const { x, y } = this.svg.children[0].getPointAtLength(this.counter, this.state.curveLength);
     
     this.setState({
-      transform: `translate(${(x - 15).toFixed(2)}, ${(y - 15).toFixed(2)})`
+      transform: `translate(${(x - 30).toFixed(2)}, ${(y - 30).toFixed(2)})`
     });
 
     requestAnimationFrame(this.moveStar);
