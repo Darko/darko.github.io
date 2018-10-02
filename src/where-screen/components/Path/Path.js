@@ -2,6 +2,8 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import styled from 'styled-components';
 
+const speed = 0.3;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -45,13 +47,13 @@ export default class Path extends React.Component {
     direction: true,
   }
 
-  moveStar = () => {
+  go = () => {
     if (this.stop) {
       return;
     }
 
     if (!this.avatar || !this.svg) {
-      window.requestAnimationFrame(this.moveStar);
+      window.requestAnimationFrame(this.go);
       return;
     }
 
@@ -59,25 +61,36 @@ export default class Path extends React.Component {
 
     /*	Based on the direction variable either increase or decrease the counter */
     if (this.state.direction) {
-      this.counter += 0.3;
+      this.counter += speed;
     } else {
-      this.counter -= 0.3;
+      this.counter -= speed;
     }
 
-    const point = this.svg.children[0].getPointAtLength(this.counter, this.curveLength);
+    const point = this.svg.children[0].getPointAtLength(this.counter);
     const X = (point.x - 30).toFixed(2);
     const Y = (point.y - 30).toFixed(2);
     
-    this.setState({
+    this.setState(state => ({
       x: X,
       y: Y,
-    }, () => !this.state.userDragged && this.calcInitialPosition());
+    }), () => {
+      if (this.state.userDragged) {
+        return;
+      }
+
+      if (window.innerWidth > this.svg.parentNode.offsetWidth) {
+        this.calcInitialPosition(0, 0);
+        return;
+      }
+
+      this.calcInitialPosition();
+    });
 
     if (X < -15 && Y < -15 ) {
       return;
     }
 
-    requestAnimationFrame(this.moveStar);
+    requestAnimationFrame(this.go);
   }
 
   onDrag = (e, dragData) => {
@@ -92,18 +105,30 @@ export default class Path extends React.Component {
 
   componentDidMount() {
     window.xd = this;
-    // requestAnimationFrame(this.moveStar);
-    setTimeout(this.calcInitialPosition.bind(this), 500);
+    setTimeout(() => {
+      const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
+      this.calcInitialPosition(val, val);
+    }, 200);
   }
 
-  calcInitialPosition() {
+  calcInitialPosition(setX, setY) {
+    if (setX !== undefined && setY !== undefined) {
+      this.setState({
+        position: {
+          x: setX,
+          y: setY
+        }
+      });
+      return;
+    }
+
     const { x, y } = this.anchor.getBoundingClientRect();
     const { position } = this.state;
-    const posx = position.x + (window.innerWidth / 2) - x;
-    const posy = position.y + (window.innerHeight / 2) - y;
+    const posX = position.x + (window.innerWidth / 2) - x;
+    const posY = position.y + (window.innerHeight / 2) - y;
 
     this.setState({
-      position: { x: posx, y: posy }
+      position: { x: posX, y: posY }
     });
   }
 
