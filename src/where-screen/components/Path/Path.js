@@ -9,6 +9,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  transition: opacity 0.2s linear;
+  opacity: ${props => props.fadeIn ? 1 : 0};
 `;
 
 const Anchor = styled.span`
@@ -43,8 +45,9 @@ export default class Path extends React.Component {
   state = {
     x: 624,
     y: 462,
-    position: { x: -291, y: -248 },
+    position: { x: 0, y: 0 },
     direction: true,
+    fadeIn: false,
   }
 
   go = () => {
@@ -108,12 +111,13 @@ export default class Path extends React.Component {
     setTimeout(() => {
       const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
       this.calcInitialPosition(val, val);
-    }, 200);
+    }, 1000);
   }
 
   calcInitialPosition(setX, setY) {
     if (setX !== undefined && setY !== undefined) {
       this.setState({
+        fadeIn: true,
         position: {
           x: setX,
           y: setY
@@ -128,16 +132,17 @@ export default class Path extends React.Component {
     const posY = position.y + (window.innerHeight / 2) - y;
 
     this.setState({
-      position: { x: posX, y: posY }
+      position: { x: posX, y: posY },
+      fadeIn: true,
     });
   }
 
   render() {
-    const { x, y, position } = this.state;
+    const { x, y, position, fadeIn } = this.state;
     const translate = `translate(${x}, ${y})`;
 
     return (
-      <Wrapper>
+      <Wrapper fadeIn={fadeIn}>
         <Draggable
           position={position}
           onDrag={this.onDrag}
