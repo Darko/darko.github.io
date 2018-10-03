@@ -1,4 +1,6 @@
-const PLATFORM = process.env.PLATFORM || 'development';
+import dotenv from 'dotenv';
+
+const PLATFORM = 'production';
 
 const api = {
   development: 'http://localhost:6969',
