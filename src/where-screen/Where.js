@@ -4,6 +4,7 @@ import Lines from '../components/Lines/Lines';
 import Name from '../home-screen/components/Name/Name';
 import PageWrapper from '../components/Page/Wrapper';
 import Path from './components/Path/Path';
+import config from 'config';
 
 const Wrapper = PageWrapper.extend`
   grid-template-areas:
@@ -29,14 +30,32 @@ const Content = styled.div`
   grid-area: content;
 `;
 
-const HomeScreen = () => (
-  <Wrapper>
-    <UnSelectableLines/>
-    <UnSelectableName>Where</UnSelectableName>
-    <Content>
-      <Path/>
-    </Content>
-  </Wrapper>
-);
+class WhereScreen extends React.Component {
+  state = {
+    completed: 0
+  }
 
-export default HomeScreen;
+  componentDidMount() {
+    fetch(config.api)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        completed: res.completed
+      }, () => console.log(this.state));
+    });
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <UnSelectableLines/>
+        <UnSelectableName>Where</UnSelectableName>
+        <Content>
+          <Path completed={this.state.completed}/>
+        </Content>
+      </Wrapper>
+    );
+  }
+}
+
+export default WhereScreen;

@@ -7,6 +7,13 @@ export const Title = styled.h1`
   line-height: 3.2rem;
 `;
 
+export const SubTitle = styled.h3`
+  color: ${props => props.theme.colors.title};
+  font-family: ${props => props.theme.typography.title.fontFamily};
+  font-size: 1.8rem;
+  line-height: 1.5;
+`;
+
 export const Copy = styled.p`
   color: ${props => props.theme.colors.copy};
   font-family: ${props => props.theme.typography.copy.fontFamily};

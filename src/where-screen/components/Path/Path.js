@@ -1,6 +1,7 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 import styled from 'styled-components';
+import { Jagodina, Ljubljana, Shtip } from 'where-screen/components/Locations/Jagodina';
 
 const speed = 0.3;
 
@@ -22,7 +23,7 @@ const Anchor = styled.span`
 `;
 
 const SvgWrapper = styled.div`
-
+  color: ${props => props.theme.colors.primary(1)};
   svg {
     min-width: 665px;
     min-height: 505px;
@@ -32,11 +33,14 @@ const SvgWrapper = styled.div`
   }
   .st0 {
     fill: none;
-    stroke: ${props => props.theme.colors.primary(1)};
+    stroke: currentColor;
     stroke-width: 7;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-miterlimit: 10;
+  }
+  .st1 {
+    fill: currentColor;
   }
 `;
 
@@ -48,6 +52,8 @@ export default class Path extends React.Component {
     position: { x: 0, y: 0 },
     direction: true,
     fadeIn: false,
+    showBreak: true,
+    showDestination: false,
   }
 
   go = () => {
@@ -111,6 +117,20 @@ export default class Path extends React.Component {
     setTimeout(() => {
       const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
       this.calcInitialPosition(val, val);
+      this.curveLength = this.curveLength || this.svg.children[0].getTotalLength();
+      
+      const { completed = 0 } = this.props;
+      const percent = completed === 100 ? this.curveLength : ((100 - completed) / 100) * this.curveLength;
+
+      const length = this.curveLength - percent;
+      const point = this.svg.children[0].getPointAtLength(length);
+      const X = (point.x - 30).toFixed(2);
+      const Y = (point.y - 30).toFixed(2);
+
+      this.setState({
+        x: X,
+        y: Y,
+      });
     }, 1000);
   }
 
@@ -137,8 +157,15 @@ export default class Path extends React.Component {
     });
   }
 
+  toggleShow = (prop, val) => e => {
+    console.log('xd');
+    this.setState({
+      [prop]: val
+    });
+  }
+
   render() {
-    const { x, y, position, fadeIn } = this.state;
+    const { x, y, position, fadeIn, showBreak, showDestination } = this.state;
     const translate = `translate(${x}, ${y})`;
 
     return (
@@ -148,14 +175,37 @@ export default class Path extends React.Component {
           onDrag={this.onDrag}
         >
           <SvgWrapper>
+            <Ljubljana show={showDestination}>
+              Ljubljana
+              <span>Destination</span>
+            </Ljubljana>
+            <Jagodina show={showBreak}>
+              Jagodina
+              <span>Break point</span>
+            </Jagodina>
+            <Shtip show={showBreak}>
+              Shtip
+              <span>Start</span>
+            </Shtip>
             <svg ref={svg => this.svg = svg} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 665 505" style={{ enableBackground: 'new 0 0 665 505' }} xmlSpace="preserve">
-            <polyline className="st0" points="654.1,492.8 640.3,486.9 630.8,478.8 628.4,463.4 617.9,458.6 611,448.2 609.1,420.4 635.8,393.3 
-                635.3,381.4 641.2,369.5 632.9,361.2 630.3,349.1 612.9,324.8 610.3,317.5 612,310.6 609.1,300.8 597.7,286.6 589.7,282.1 
-                584.4,268.5 577.8,266.4 576.8,255.9 574.2,253.6 572.3,247.1 564.7,244.1 549.3,223.6 549.3,214.1 541.9,189.2 535.2,175.4 
-                509.3,177.8 506.7,168.5 500.1,160.9 497.5,155.2 486.1,149.5 476.3,149.5 429,131.9 407.7,127.4 361.1,127.4 348.7,121 334,121 
-                294.8,113.1 272.9,117.2 249.2,108.6 229.4,108.6 220.2,102.2 206.4,96.5 197.1,84.4 180.5,73 170,57.1 161,55.2 156.5,48.3 143,43 
-                136.5,48.7 124.7,48 97.8,30.2 87.8,29 78.6,30.9 66.9,38.5 56.2,29 46.7,26.2 36,25.2 28.7,20 23.2,20.9 13,11.4 "/>
-                <image xlinkHref="./assets/darkool.png" transform={translate} ref={img => this.avatar = img} width="60"></image>
+              <polyline className="st0" points="652.6,493.3 638.9,487.4 629.4,479.3 627,463.9 616.5,459.1 609.6,448.7 607.7,420.9 634.3,393.8 
+                633.9,381.9 639.8,370 631.5,361.7 628.9,349.6 611.5,325.3 608.9,318 610.6,311.1 607.7,301.3 596.3,287.1 588.2,282.6 583,269 
+                576.4,266.9 575.4,256.4 572.8,254 570.9,247.6 563.3,244.5 547.9,224.1 547.9,214.6 540.5,189.7 533.8,175.9 507.9,178.3 
+                505.3,169 498.7,161.4 496.1,155.7 484.7,150 474.9,150 427.6,132.4 406.2,127.9 359.7,127.9 347.3,121.5 332.6,121.5 293.4,113.6 
+                271.5,117.7 247.8,109.1 228,109.1 218.8,102.7 205,97 195.7,84.9 179.1,73.5 168.6,57.5 159.6,55.6 155.1,48.8 141.5,43.5 
+                135.1,49.2 123.2,48.5 96.4,30.7 86.4,29.5 77.2,31.4 65.5,39 54.8,29.5 45.3,26.7 34.6,25.7 27.3,20.5 21.8,21.4 11.6,11.9 "/>
+              <circle className="st1" cx="652.6" cy="493.3" r="8.5"/>
+              <circle
+                onMouseEnter={this.toggleShow('showBreak', true)}
+                onMouseLeave={this.toggleShow('showBreak', false)}
+                className="st1" cx="563.3" cy="244.5" r="8.5"
+              />
+              <circle 
+                onMouseEnter={this.toggleShow('showDestination', true)}
+                onMouseLeave={this.toggleShow('showDestination', false)}
+                className="st1" cx="11.6" cy="11.9" r="8.5"
+              />
+              <image xlinkHref="./assets/darkool.png" transform={translate} ref={img => this.avatar = img} width="60"></image>
             </svg>
             <Anchor innerRef={anchor => this.anchor = anchor} style={{
               transform: `translate(${x}px, ${y}px)`
