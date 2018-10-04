@@ -1,48 +1,9 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import styled from 'styled-components';
 import { Jagodina, Ljubljana, Shtip } from 'where-screen/components/Locations/Jagodina';
+import { Wrapper, Anchor, SvgWrapper } from './styles';
 
 const speed = 0.3;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  transition: opacity 0.2s linear;
-  opacity: ${props => props.fadeIn ? 1 : 0};
-`;
-
-const Anchor = styled.span`
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-const SvgWrapper = styled.div`
-  color: ${props => props.theme.colors.primary(1)};
-  svg {
-    min-width: 665px;
-    min-height: 505px;
-    max-width: 665px;
-    max-height: 505px;
-    overflow: visible;
-  }
-  .st0 {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-miterlimit: 10;
-  }
-  .st1 {
-    fill: currentColor;
-  }
-`;
 
 export default class Path extends React.Component {
   counter = 0;
@@ -51,7 +12,7 @@ export default class Path extends React.Component {
     y: 462,
     position: { x: 0, y: 0 },
     direction: true,
-    fadeIn: false,
+    fadeIn: true,
     showBreak: true,
     showDestination: false,
   }
@@ -79,10 +40,10 @@ export default class Path extends React.Component {
     const X = (point.x - 30).toFixed(2);
     const Y = (point.y - 30).toFixed(2);
     
-    this.setState(state => ({
+    this.setState({
       x: X,
       y: Y,
-    }), () => {
+    }, () => {
       if (this.state.userDragged) {
         return;
       }
@@ -114,24 +75,24 @@ export default class Path extends React.Component {
 
   componentDidMount() {
     window.xd = this;
-    setTimeout(() => {
-      const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
-      this.calcInitialPosition(val, val);
-      this.curveLength = this.curveLength || this.svg.children[0].getTotalLength();
+    // setTimeout(() => {
+    //   const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
+    //   this.calcInitialPosition(val, val);
+    //   this.curveLength = this.curveLength || this.svg.children[0].getTotalLength();
       
-      const { completed = 0 } = this.props;
-      const percent = completed === 100 ? this.curveLength : ((100 - completed) / 100) * this.curveLength;
+    //   const { completed = 0 } = this.props;
+    //   const percent = completed === 100 ? this.curveLength : ((100 - completed) / 100) * this.curveLength;
 
-      const length = this.curveLength - percent;
-      const point = this.svg.children[0].getPointAtLength(length);
-      const X = (point.x - 30).toFixed(2);
-      const Y = (point.y - 30).toFixed(2);
+    //   const length = this.curveLength - percent;
+    //   const point = this.svg.children[0].getPointAtLength(length);
+    //   const X = (point.x - 30).toFixed(2);
+    //   const Y = (point.y - 30).toFixed(2);
 
-      this.setState({
-        x: X,
-        y: Y,
-      });
-    }, 1000);
+    //   this.setState({
+    //     x: X,
+    //     y: Y,
+    //   });
+    // }, 1000);
   }
 
   calcInitialPosition(setX, setY) {

@@ -1,6 +1,4 @@
-import dotenv from 'dotenv';
-
-const PLATFORM = 'development';
+const PLATFORM = 'production';
 
 const api = {
   development: 'http://localhost:6969',
