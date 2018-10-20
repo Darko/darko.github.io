@@ -14,7 +14,7 @@ export default class Path extends React.Component {
     direction: true,
     fadeIn: true,
     showBreak: true,
-    showDestination: false,
+    showDestination: true,
   }
 
   go = () => {
@@ -160,11 +160,7 @@ export default class Path extends React.Component {
                 onMouseLeave={this.toggleShow('showBreak', false)}
                 className="st1" cx="563.3" cy="244.5" r="8.5"
               />
-              <circle 
-                onMouseEnter={this.toggleShow('showDestination', true)}
-                onMouseLeave={this.toggleShow('showDestination', false)}
-                className="st1" cx="11.6" cy="11.9" r="8.5"
-              />
+              <circle className="st1" cx="11.6" cy="11.9" r="8.5" />
               <image xlinkHref="./assets/darkool.png" transform={translate} ref={img => this.avatar = img} width="60"></image>
             </svg>
             <Anchor innerRef={anchor => this.anchor = anchor} style={{
