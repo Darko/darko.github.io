@@ -74,25 +74,24 @@ export default class Path extends React.Component {
   }
 
   componentDidMount() {
-    window.xd = this;
-    // setTimeout(() => {
-    //   const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
-    //   this.calcInitialPosition(val, val);
-    //   this.curveLength = this.curveLength || this.svg.children[0].getTotalLength();
+    setTimeout(() => {
+      const val = window.innerWidth > this.svg.parentNode.offsetWidth ? 0 : undefined;
+      this.calcInitialPosition(val, val);
+      this.curveLength = this.curveLength || this.svg.children[0].getTotalLength();
       
-    //   const { completed = 0 } = this.props;
-    //   const percent = completed === 100 ? this.curveLength : ((100 - completed) / 100) * this.curveLength;
+      const { completed = 0 } = this.props;
+      const percent = completed === 100 ? this.curveLength : ((100 - completed) / 100) * this.curveLength;
 
-    //   const length = this.curveLength - percent;
-    //   const point = this.svg.children[0].getPointAtLength(length);
-    //   const X = (point.x - 30).toFixed(2);
-    //   const Y = (point.y - 30).toFixed(2);
+      const length = this.curveLength - percent;
+      const point = this.svg.children[0].getPointAtLength(length);
+      const X = (point.x - 30).toFixed(2);
+      const Y = (point.y - 30).toFixed(2);
 
-    //   this.setState({
-    //     x: X,
-    //     y: Y,
-    //   });
-    // }, 1000);
+      this.setState({
+        x: X,
+        y: Y,
+      });
+    }, 100);
   }
 
   calcInitialPosition(setX, setY) {

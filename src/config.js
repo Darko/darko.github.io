@@ -1,4 +1,4 @@
-const PLATFORM = 'production';
+const PLATFORM = process.env.PLATFORM || 'production';
 
 const api = {
   development: 'http://localhost:6969',
