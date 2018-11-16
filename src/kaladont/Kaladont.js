@@ -1,50 +1,21 @@
 import React from 'react';
 import config from 'config';
-import styled from 'styled-components';
-import Logo from './components/logo/Logo';
 import Button from './components/button/Button';
 import { backgroundGenerator } from './utils/canvas';
 import { loadFont } from './utils/fonts';
-import bounce from './components/animations/bounce';
+import { Wrapper, StyledLogo, Content } from './styles'
+import { throttle } from '../utils/not.lodash';
 
-const Wrapper = styled.div`
-  font-family: 'Bangers';
-  width: 100%;
-  height: 100%;
-  background-color: rgb(102, 34, 204);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-`;
 
-const Content = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 265px;
-`;
-
-const StyledLogo = styled(Logo)`
-  opacity: ${props => props.fadeIn ? 1 : 0};
-  transform: scale(1);
-  transform-origin: center;
-  animation: .4s linear;
-  animation-name: ${props => props.fadeIn ? bounce : null};
-`;
 class WhereScreen extends React.Component {
   state = {
     fadeIn: false
   }
   componentDidMount() {
-    fetch(`${config.api}/v1/games/hTHct`)
-    .then(r => r.json())
-    .then(console.log);
-
     this.fontLink = loadFont();
     this.fontLink.onload = this.onFontLoaded;
     this.initCanvas();
+    window.addEventListener('resize', throttle(this.initCanvas.bind(this), 200))
   }
 
   componentWillUnmount() {
@@ -61,15 +32,36 @@ class WhereScreen extends React.Component {
 
   initCanvas = () => {
     window.xd = this;
+    this.resizeCanvas();
+    this.paintBg();
+  }
+
+  resizeCanvas = () => {
     const { parentNode } = this.canvas;
     this.canvas.setAttribute('width', parentNode.offsetWidth);
     this.canvas.setAttribute('height', parentNode.offsetHeight);
-    this.paintBg();
   }
 
   paintBg = () => {
     const ctx = this.canvas.getContext('2d');
     backgroundGenerator(ctx);
+  }
+
+  createGame = () => {
+    let name = prompt("What should the others call you?");
+
+    if (!name) {
+      return
+    }
+
+    fetch(`${config.api}/v1/games`, {
+      method: 'post',
+      body: JSON.stringify({
+        name
+      })
+    })
+    .then(r => r.json())
+    .then(console.log);
   }
 
   render() {
@@ -79,9 +71,8 @@ class WhereScreen extends React.Component {
         <canvas ref={c => this.canvas = c}></canvas>
         <Content>
           <StyledLogo fadeIn={this.state.fadeIn}/>
-          <Button><span className="text">Create Game</span></Button>
+          <Button onClick={this.createGame}><span className="text">Create Game</span></Button>
         </Content>
-        
       </Wrapper>
     );
   }
