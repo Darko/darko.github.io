@@ -5,6 +5,7 @@ import { backgroundGenerator } from './utils/canvas';
 import { loadFont } from './utils/fonts';
 import { Wrapper, StyledLogo, Content } from './styles'
 import { throttle } from '../utils/not.lodash';
+import { withRouter } from "react-router";
 
 
 class WhereScreen extends React.Component {
@@ -61,7 +62,10 @@ class WhereScreen extends React.Component {
       })
     })
     .then(r => r.json())
-    .then(console.log);
+    .then(game => {
+      const { id } = game.room;
+      this.props.history.push(`/kaladont/${id}`)
+    });
   }
 
   render() {
@@ -78,4 +82,4 @@ class WhereScreen extends React.Component {
   }
 }
 
-export default WhereScreen;
+export default withRouter(WhereScreen);

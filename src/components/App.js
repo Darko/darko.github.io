@@ -7,6 +7,7 @@ import HomeScreen from '../home-screen/HomeScreen';
 import Bio from '../bio/Bio';
 import Where from '../where-screen/Where';
 import Kaladont from '../kaladont/Kaladont';
+import Game from '../kaladont/components/game/Game';
 
 class App extends React.Component {
   constructor() {
@@ -79,6 +80,7 @@ class App extends React.Component {
           <Route exact path="/bio" component={Bio} />
           <Route exact path="/where" component={Where} />
           <Route exact path="/kaladont" component={Kaladont} />
+          <Route exact path="/kaladont/:id" component={Game} />
         </Switch>
       </ThemeProvider>
     );
