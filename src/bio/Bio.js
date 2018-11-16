@@ -7,7 +7,7 @@ import { Copy, Link } from '../components/Text/Text';
 import Nav from '../components/Navigation/Navigation';
 import * as sns from '../constants/sns';
 
-const Wrapper = PageWrapper.extend`
+const Wrapper = styled(PageWrapper)`
   grid-template-areas:
     "title-lines title-lines"
     "title title"

@@ -3,7 +3,7 @@ import Lines from 'components/Lines/Lines';
 import Name from 'home-screen/components/Name/Name';
 import PageWrapper from 'components/Page/Wrapper';
 
-export const Wrapper = PageWrapper.extend`
+export const Wrapper = styled(PageWrapper)`
   grid-template-areas:
     "title-lines title-lines"
     "title title"

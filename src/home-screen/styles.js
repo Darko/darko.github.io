@@ -4,7 +4,7 @@ import ProfileImage from './components/Image/Image';
 import Anchor from '../components/NavLink/AnchorLink';
 import Nav from '../components/Navigation/Navigation';
 
-export const Wrapper = PageWrapper.extend`
+export const Wrapper = styled(PageWrapper)`
   perspective: 100px;
   grid-template-areas:
     "title-lines title-lines"

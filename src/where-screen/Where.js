@@ -15,7 +15,8 @@ class WhereScreen extends React.Component {
       this.setState({
         completed: res.completed
       }, () => console.log(this.state));
-    });
+    })
+    .catch(() => {})
   }
 
   render() {
