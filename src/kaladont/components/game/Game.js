@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from "react-router";
 import config from 'config'
+import { Wrapper } from 'kaladont/styles';
+import Spot from 'kaladont/components/spot/Spot';
 
 class Game extends React.Component {
   state = {
@@ -17,9 +19,9 @@ class Game extends React.Component {
   render() {
     window.xd = this;
     return (
-      <div>
-        { this.state.game.players.map(player => <span key={player.id}>{player.name}</span>) }
-      </div>
+      <Wrapper>
+        { this.state.game.players.map(player => <Spot key={player.id} player={player}/>) }
+      </Wrapper>
     );
   }
 }
