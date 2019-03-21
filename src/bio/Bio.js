@@ -36,29 +36,36 @@ const routes = [
   }
 ];
 
-const HomeScreen = () => (
-  <Wrapper>
-    <Lines />
-    <Name>Bio</Name>
-    <Content>
-      <Text>
-        Here, have something to talk about next time you see me.
-      </Text>
-      <Text>
-        I’m a 22-year-old Front-end developer, wanna-be digital nomad, and an amateur fitness enthusiast.
-      </Text>
-      <Text>
-        Studied Computer Science. At some point, an opportunity presented itself to me. Started working as a Software Engineer at StreamElements and after some time I dropped out of university to further advance my career.
-      </Text>
-      <Text>
-        Before that, I graduated high school and got a diploma in “Electricity, Electronics and Telecommunications”.
-      </Text>
-      <Text>
-        I don’t have many public things to present on this website, but you can take a look at some of my small coding projects on <Link href={sns.github} target="blank">Github</Link>, my adventures on <Link href={sns.instagram} target="blank">Instagram</Link>, and thoughts on <Link href={sns.twitter} target="blank">Twitter</Link>.
-      </Text>
-    </Content>
-    <Navigation links={routes} />
-  </Wrapper>
-);
+const HomeScreen = () => {
+  const currentYearTime = new Date().getTime();
+  const dateOfBirthTime = new Date('1996-03-21').getTime();
+  const msInAYear = (60 * 60 * 24 * 365) * 1000;
+  const age = Math.floor((currentYearTime - dateOfBirthTime) / msInAYear);
+
+  return (
+    <Wrapper>
+      <Lines />
+      <Name>Bio</Name>
+      <Content>
+        <Text>
+          Here, have something to talk about next time you see me.
+        </Text>
+        <Text>
+          I’m a {age}-year-old Front-end developer, wanna-be digital nomad, and an amateur fitness enthusiast.
+        </Text>
+        <Text>
+          Studied Computer Science. At some point, an opportunity presented itself to me. Started working as a Software Engineer at StreamElements and after some time I dropped out of university to further advance my career.
+        </Text>
+        <Text>
+          Before that, I graduated high school and got a diploma in “Electricity, Electronics and Telecommunications”.
+        </Text>
+        <Text>
+          I don’t have many public things to present on this website, but you can take a look at some of my small coding projects on <Link href={sns.github} target="blank">Github</Link>, my adventures on <Link href={sns.instagram} target="blank">Instagram</Link>, and thoughts on <Link href={sns.twitter} target="blank">Twitter</Link>.
+        </Text>
+      </Content>
+      <Navigation links={routes} />
+    </Wrapper>
+  )
+};
 
 export default HomeScreen;

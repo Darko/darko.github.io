@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Lines = ({ className }) => (
+const Lines = ({ className = '' }) => (
   <Wrapper className={className}>
     <span className="line-long" />
     <span className="line-short" />

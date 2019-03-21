@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   margin-top: 4.7rem;
 `;
 
-const Navigation = ({ links, className }) => (
+const Navigation = ({ links = [], className = '' }) => (
   <Wrapper className={className}>
     { links.map(link => <NavLink key={link.name} to={link.route} text={link.name} direction={link.direction} />) }
   </Wrapper>

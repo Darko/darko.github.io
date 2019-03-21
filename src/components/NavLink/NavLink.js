@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const NavLink = ({
-  to, text, direction, className
+  to, text, direction, className = ''
 }) => (
   <ReactNavLink to={to} direction={direction} className={className}>
     { direction === 'forward' ? <Forward /> : <Backward /> } <span>{text}</span>
