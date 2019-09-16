@@ -78,7 +78,7 @@ const Resume = () => {
         StreamElements provides tools for live content creators on Twitch and YouTube, helping them achieve fame and fortune in the content creation world.
       </StyledCopy>
       <StyledCopy>
-        As the first front end developer in the company, a huge portion of my time at StreamElements involves developing various (and most) user-facing interfaces and systems. At StreamElements, I worked with technologies such as AngularJS, React, NodeJS, MongoDB, CSS Preprocessors, real-time data transmission with Web Sockets.
+        As the first front-end developer in the company, a huge portion of my time at StreamElements involves developing various (and most) user-facing interfaces and systems. At StreamElements, I worked with technologies such as AngularJS, React, NodeJS, MongoDB, CSS Preprocessors, real-time data transmission with Web Sockets.
       </StyledCopy>
     </Role>
     <Role>
