@@ -6,6 +6,7 @@ import { Wrapper, Anchor, SvgWrapper } from './styles';
 const speed = 0.3;
 
 export default class Path extends React.Component {
+  stop = false;
   counter = 0;
   state = {
     x: 624,

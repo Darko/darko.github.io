@@ -6,6 +6,7 @@ import createTheme from '../theme';
 import HomeScreen from '../home-screen/HomeScreen';
 import Bio from '../bio/Bio';
 import Where from '../where-screen/Where';
+import Resume from '../resume/Resume';
 
 class App extends React.Component {
   constructor() {
@@ -77,6 +78,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/bio" component={Bio} />
           <Route exact path="/where" component={Where} />
+          <Route exact path="/resume" component={Resume} />
         </Switch>
       </ThemeProvider>
     );
