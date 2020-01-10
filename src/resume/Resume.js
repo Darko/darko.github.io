@@ -66,7 +66,7 @@ const EducationIcon = styled(EducationSVG)`
 `;
 
 const Resume = () => {
-  const age = (new Date().getFullYear()) - 1996;
+  const age = (new Date().getFullYear()) - 1995;
   return <Root>
     <Name>Darko Efremov</Name>
     <Position>Software engineer, {age}</Position>
