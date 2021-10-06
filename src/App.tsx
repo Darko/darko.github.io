@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Toggle from '@radix-ui/react-toggle';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
-import { styled, globalCss, darkTheme } from './theme';
+import { styled, globalCss, darkTheme, lightTheme } from './theme';
 import './App.css'
 
 globalCss({
@@ -45,7 +45,7 @@ const ThemeButton = styled(Toggle.Root, {
   height: 15,
   position: 'relative',
   cursor: 'pointer',
-  color: '$textLowContrast',
+  color: '$textHighContrast',
   '&:before': {
     content: '""',
     position: 'absolute',
@@ -67,15 +67,18 @@ const Title = styled('h1', {
   marginBottom: '1.5rem'
 });
 
-const CTA = styled('button', {
+const CTA = styled('a', {
   all: 'unset',
+  display: 'inline-block',
   padding: '0.625rem 1rem',
   fontSize: '$body',
-  fontWeight: '$light',
+  fontWeight: '$regular',
   textTransform: 'uppercase',
   backgroundColor: '$uiBg',
+  color: '$onUiText',
   borderRadius: '0.25rem',
   marginBottom: '5rem',
+  cursor: 'pointer',
   '&:hover': {
     backgroundColor: '$uiBgHover',
   },
@@ -107,8 +110,30 @@ const BioEntryTitle = styled('h2', {
 
 const BioEntryEntry = styled('p', {
   fontSize: '$body',
-  margin: 0
-})
+  margin: 0,
+  color: '$textHighContrast',
+  textDecoration: 'none'
+});
+
+const StyledLinkSvg = styled('svg', {
+  color: '$textLowContrast'
+});
+
+function LinkIcon () {
+  return <StyledLinkSvg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></StyledLinkSvg>
+}
+
+const mailSubject = encodeURIComponent(`I'd like to work with you!`);
+const mailBody = encodeURIComponent(`
+  Hey Darko!
+
+  I'm interested in a [pick: frontend | backend | data science | product design | other, provide] position at StreamElements.
+
+  I have attached my CV, and would greatly appreciate if you could take a look. (attach your CV and other valuable info)
+
+  Cheers,
+  [Your name]
+`);
 
 function App() {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean>(window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -130,7 +155,9 @@ function App() {
         Front-end Engineer <br/>
         working at StreamElements
       </Title>
-      <CTA>Work with me</CTA>
+      <CTA className={lightTheme} href={`mailto:me@darko.mk?subject=${mailSubject}&body=${mailBody}`}>
+        Work with me
+      </CTA>
       <Bio>
         <BioEntry>
           <BioEntryTitle>Span</BioEntryTitle>
@@ -155,14 +182,14 @@ function App() {
         </BioEntry>
         <BioEntry>
           <BioEntryTitle>Presence</BioEntryTitle>
-          <BioEntryEntry>
-            Github
+          <BioEntryEntry as="a" href="https://github.com/darko" target="_blank">
+            Github <LinkIcon />
           </BioEntryEntry>
-          <BioEntryEntry>
-            Instagram
+          <BioEntryEntry as="a" href="https://www.instagram.com/darko_efremov" target="_blank">
+            Instagram <LinkIcon />
           </BioEntryEntry>
-          <BioEntryEntry>
-            Twitter
+          <BioEntryEntry as="a" href="https://twitter.com/grtr_than_equal" target="_blank">
+            Twitter <LinkIcon />
           </BioEntryEntry>
         </BioEntry>
       </Bio>
