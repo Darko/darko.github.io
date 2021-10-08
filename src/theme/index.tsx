@@ -1,5 +1,4 @@
-import { createStitches } from '@stitches/react';
-import type * as Stitches from '@stitches/react';
+import { createStitches, PropertyValue } from '@stitches/react';
 import { amber, amberDark, indigoA } from '@radix-ui/colors';
 
 const { styled, globalCss, createTheme, theme } = createStitches({
@@ -34,7 +33,7 @@ const { styled, globalCss, createTheme, theme } = createStitches({
     bp1: '(max-width: 699px)'
   },
   utils: {
-    px: (value: Stitches.PropertyValue<'padding'>) => ({
+    px: (value: PropertyValue<'padding'>) => ({
       paddingLeft: value,
       paddingRight: value
     })
