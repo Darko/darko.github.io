@@ -1,14 +1,5 @@
 @font-face {
   font-family: 'Silka';
-  src: url('./assets/silka-bold-webfont.woff2') format('woff2'),
-      url('./assets/silka-bold-webfont.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'Silka';
   src: url('./assets/silka-light-webfont.woff2') format('woff2'),
       url('./assets/silka-light-webfont.woff') format('woff');
   font-weight: 400;
@@ -22,5 +13,28 @@
       url('./assets/silka-regular-webfont.woff') format('woff');
   font-weight: 500;
   font-style: normal;
+}
 
+@font-face {
+  font-family: 'Silka';
+  src: url('./assets/silka-medium-webfont.woff2') format('woff2'),
+       url('./assets/silka-medium-webfont.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('./assets/silka-semibold-webfont.woff2') format('woff2'),
+       url('./assets/silka-semibold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('./assets/silka-bold-webfont.woff2') format('woff2'),
+      url('./assets/silka-bold-webfont.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
 }

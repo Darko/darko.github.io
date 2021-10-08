@@ -1,14 +1,15 @@
 import { createStitches } from '@stitches/react';
+import type * as Stitches from '@stitches/react';
 import { amber, amberDark, indigoA } from '@radix-ui/colors';
 
-const { styled, globalCss, createTheme, config } = createStitches({
+const { styled, globalCss, createTheme, theme } = createStitches({
   theme: {
     colors: {
       bg: indigoA.indigoA1,
       uiBg: amber.amber6,
       uiBgHover: amber.amber7,
       uiBgActive: amber.amber8,
-      onUiText: amberDark.amber7,
+      onUiText: amberDark.amber8,
       textLowContrast: 'hsl(0 0% 0% / 0.5)',
       textHighContrast: 'hsl(0 0% 0% / 0.87)'
     },
@@ -22,18 +23,24 @@ const { styled, globalCss, createTheme, config } = createStitches({
       subheading: '2rem'
     },
     fontWeights: {
-      bold: 'bold',
+      light: '400',
       regular: '500',
-      light: '400'
+      medium: '600',
+      semiBold: '700',
+      bold: '800'
     }
+  },
+  media: {
+    bp1: '(max-width: 699px)'
+  },
+  utils: {
+    px: (value: Stitches.PropertyValue<'padding'>) => ({
+      paddingLeft: value,
+      paddingRight: value
+    })
   }
 });
 
-const lightTheme = createTheme('light-theme', {
-  colors: {
-    ...config.theme.colors
-  }
-});
 const darkTheme = createTheme('dark-theme',{
   colors: {
     bg: 'hsl(0 0% 0% / 1)',
@@ -46,5 +53,5 @@ export {
   styled,
   globalCss,
   darkTheme,
-  lightTheme
+  theme as lightTheme
 }

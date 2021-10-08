@@ -62,17 +62,24 @@ const Title = styled('h1', {
   margin: '0 auto',
   textAlign: 'center',
   fontSize: '$subheading',
+  lineHeight: '1.4',
   fontWeight: '$light',
   letterSpacing: '-0.125rem',
-  marginBottom: '1.5rem'
+  marginBottom: '1.5rem',
+  '@bp1': {
+    px: '1rem',
+    span: {
+      display: 'none'
+    }
+  }
 });
 
 const CTA = styled('a', {
   all: 'unset',
   display: 'inline-block',
   padding: '0.625rem 1rem',
-  fontSize: '$body',
-  fontWeight: '$regular',
+  fontSize: '0.875rem',
+  fontWeight: '$semiBold',
   textTransform: 'uppercase',
   backgroundColor: '$uiBg',
   color: '$onUiText',
@@ -92,14 +99,23 @@ const Bio = styled('ul', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   gridColumnGap: '6.25rem',
-  listStyle: 'none'
+  listStyle: 'none',
+  
+  '@bp1': {
+    padding: 0,
+    gridTemplateColumns: '1fr',
+    gridRowGap: '3.125rem'
+  }
 });
 
 const BioEntry = styled('li', {
   display: 'grid',
   gridRowGap: '2rem',
   placeItems: 'start',
-  gridAutoRows: 'min-content'
+  gridAutoRows: 'min-content',
+  '@bp1': {
+    gridRowGap: '1rem'
+  }
 });
 
 const BioEntryTitle = styled('h2', {
@@ -125,14 +141,15 @@ function LinkIcon () {
 
 const mailSubject = encodeURIComponent(`I'd like to work with you!`);
 const mailBody = encodeURIComponent(`
-  Hey Darko!
+  Hey Darko,
 
-  I'm interested in a [pick: frontend | backend | data science | product design | other, provide] position at StreamElements.
+  I'm interested in working with you and I'd like to apply for [position] at StreamElements.
 
-  I have attached my CV, and would greatly appreciate if you could take a look. (attach your CV and other valuable info)
+  Please find attached my CV for your review and consideration.
+  I look forward to hearing from you.
 
   Cheers,
-  [Your name]
+  [name]
 `);
 
 function App() {
@@ -153,9 +170,9 @@ function App() {
       </Nav>
       <Title>
         Front-end Engineer <br/>
-        working at StreamElements
+        <span>working</span> at StreamElements
       </Title>
-      <CTA className={lightTheme} href={`mailto:me@darko.mk?subject=${mailSubject}&body=${mailBody}`}>
+      <CTA className={lightTheme} href={`mailto:workwithme@darko.mk?subject=${mailSubject}&body=${mailBody}`}>
         Work with me
       </CTA>
       <Bio>
