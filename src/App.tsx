@@ -187,13 +187,13 @@ function App() {
         <BioEntry>
           <BioEntryTitle>Span</BioEntryTitle>
           <BioEntryEntry>
-            6+ years at current unicorn startup
+            {new Date().getFullYear() - new Date(2016, 0, 1).getFullYear()}+ years at current unicorn company
           </BioEntryEntry>
           <BioEntryEntry>
-            Years spent on trying and learning
+            Years spent on trial and error
           </BioEntryEntry>
           <BioEntryEntry>
-            Born on March 21, 1996
+            Born March 21, 1996
           </BioEntryEntry>
         </BioEntry>
         <BioEntry>
@@ -202,7 +202,7 @@ function App() {
             Self/Community taught
           </BioEntryEntry>
           <BioEntryEntry>
-            Computer Science dropout
+            Computer Science
           </BioEntryEntry>
         </BioEntry>
         <BioEntry>
