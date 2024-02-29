@@ -31,7 +31,7 @@ const { styled, globalCss, createTheme, theme, keyframes } = createStitches({
     }
   },
   media: {
-    bp1: '(max-width: 699px)'
+    bp1: '(max-width: 730px)'
   },
   utils: {
     px: (value: PropertyValue<'padding'>) => ({

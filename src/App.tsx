@@ -82,7 +82,7 @@ const Title = styled("h1", {
   fontSize: "clamp(3.5rem, 1.25rem + 5vw, 6.25rem)",
   lineHeight: 1.35,
   fontWeight: "$bold",
-  marginBottom: "1.5rem",
+  marginBottom: "1.35rem",
   letterSpacing: "-0.02em",
 
   small: {
@@ -102,20 +102,20 @@ const Title = styled("h1", {
 const CTA = styled("a", {
   all: "unset",
   display: "inline-block",
-  padding: "0.625rem 0.875rem",
+  padding: "0.75rem 1.25rem",
   fontSize: "1rem",
   fontWeight: "$semiBold",
   background: '$textHighContrast',
   color: "$block",
   borderRadius: "1.5em",
-  marginBottom: "5rem",
+  marginBottom: "5.05rem",
   cursor: "pointer",
   outlineOffset: '2px',
   transformOrigin: '50%',
-  transition: 'transform 0.1s ease, outline 0.2s ease',
+  transition: 'transform 0.25s ease, outline 0.2s ease',
 
   '&:hover, &:focus-visible': {
-    transform: 'scale(1.05)',
+    transform: 'scale(1.025)',
   },
 
   '&:focus-visible': {
@@ -124,7 +124,7 @@ const CTA = styled("a", {
   },
   
   "&:active": {
-    transform: 'scale(0.95)',
+    transform: 'scale(0.975)',
   },
 });
 
@@ -153,6 +153,7 @@ const BioList = styled("ul", {
   "@bp1": {
     padding: 0,
     gridTemplateColumns: "1fr",
+    gridAutoFlow: 'row',
     gridRowGap: "3.125rem",
   },
 });
@@ -169,7 +170,11 @@ const BioEntry = styled("li", {
   },
 
   "@bp1": {
-    gridRowGap: "1rem",
+    display: 'flex',
+    '> div': {
+      width: '100%',
+      gridRowGap: "1rem",
+    },
   },
 });
 
