@@ -1,7 +1,7 @@
 import { createStitches, PropertyValue } from '@stitches/react';
 import { amber, amberDark, indigoA } from '@radix-ui/colors';
 
-const { styled, globalCss, createTheme, theme } = createStitches({
+const { styled, globalCss, createTheme, theme, keyframes } = createStitches({
   theme: {
     colors: {
       bg: indigoA.indigoA1,
@@ -10,14 +10,15 @@ const { styled, globalCss, createTheme, theme } = createStitches({
       uiBgActive: amber.amber8,
       onUiText: amberDark.amber8,
       textLowContrast: 'hsl(0 0% 0% / 0.5)',
-      textHighContrast: 'hsl(0 0% 0% / 0.87)'
+      textHighContrast: 'hsl(0 0% 0% / 0.87)',
+      block: '#f5f2eb'
     },
     fonts: {
-      base: 'Silka'
+      base: 'Manrope'
     },
     fontSizes: {
       body: 16,
-      logo: '1.125rem',
+      logo: '1.75rem',
       heading: '4.5rem',
       subheading: '2rem'
     },
@@ -40,11 +41,12 @@ const { styled, globalCss, createTheme, theme } = createStitches({
   }
 });
 
-const darkTheme = createTheme('dark-theme',{
+const darkTheme = createTheme('dark-theme', {
   colors: {
     bg: 'hsl(0 0% 0% / 1)',
     textLowContrast: 'hsl(0 0% 100% / 0.5)',
-    textHighContrast: 'hsl(0 0% 100% / 0.87)'
+    textHighContrast: 'hsl(0 0% 100% / 0.87)',
+    block: "hsl(0 0% 10% / 1)",
   }
 });
 
@@ -52,5 +54,6 @@ export {
   styled,
   globalCss,
   darkTheme,
+  keyframes,
   theme as lightTheme
 }
