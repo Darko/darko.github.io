@@ -12,7 +12,7 @@ globalCss({
   },
   body: {
     '--grid-color': '$colors$block',
-    fontFamily: "$base",
+    fontFamily: "$base, sans-serif",
     backgroundColor: "$bg",
     color: "$textHighContrast",
     fontSize: 16,
